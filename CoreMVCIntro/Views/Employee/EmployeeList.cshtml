@@ -31,20 +31,20 @@ else
         </tr>
         @foreach (Employee item in Model.Employees)
         {
-            <tr>
-                <td>
-                    @item.FirstName
-                </td>
+    <tr>
+        <td>
+            @item.FirstName
+        </td>
+        <td>@item.UserRole</td>
+        <td>
+            <a class="btn btn-warning" asp-action="UpdateEmployee" asp-controller="Employee" asp-route-id="@item.ID">Çalışan Güncelle</a>
 
-                <td>
-                    <a class="btn btn-warning" asp-action="UpdateEmployee" asp-controller="Employee" asp-route-id="@item.ID">Çalışan Güncelle</a>
-             
 
-                </td>
-                <td>
-                    <a class="btn btn-danger" asp-action="DeleteEmplyoee" asp-controller="Employee"  asp-route-id="@item.ID">Çalışan Sil</a>
-                </td>
-            </tr>
+        </td>
+        <td>
+            <a class="btn btn-danger" asp-action="DeleteEmplyoee" asp-controller="Employee" asp-route-id="@item.ID">Çalışan Sil</a>
+        </td>
+    </tr>
         }
     </table>
 
