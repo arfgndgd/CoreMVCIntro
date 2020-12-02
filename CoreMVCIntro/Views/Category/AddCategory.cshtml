@@ -1,0 +1,17 @@
+﻿@model CategoryVM
+@{
+    ViewData["Title"] = "AddCategory";
+}
+
+<h1>AddCategory</h1>
+
+<form asp-action="AddCategory" asp-controller="Category" method="post">
+    <div>
+        <input type="text" asp-for="Category.CategoryName" placeholder="Lutfen Kategori Ismini Giriniz" />
+
+        @Html.TextBoxFor(x => x.Category.Description, new {placeholder="Lutfen Acıklama Giriniz" })
+
+        <button>Ekle</button>
+    </div>
+
+</form>

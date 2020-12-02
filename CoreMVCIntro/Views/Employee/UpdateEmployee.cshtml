@@ -1,0 +1,14 @@
+﻿@model EmployeeVM 
+@{
+    ViewData["Title"] = "UpdateEmployee";
+}
+
+<h1>UpdateEmployee</h1>
+<form asp-controller="Employee"; asp-action="UpdateEmployee"; method="post">
+    <div>
+        <input type="hidden"asp-for="Employee.ID"/>
+        <input type="text" asp-for="Employee.FirstName" placeholder="Çalışan gir"/>
+
+        <button> Güncelle</button>
+    </div>
+</form>

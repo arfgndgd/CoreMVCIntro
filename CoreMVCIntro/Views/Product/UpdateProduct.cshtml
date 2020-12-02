@@ -1,0 +1,33 @@
+﻿
+@model ProductVM
+@{
+    ViewData["Title"] = "UpdateProduct";
+}
+
+
+<form asp-action="UpdateProduct" asp-controller="Product" method="post">
+    <div>
+        <input type="hidden" asp-for="Product.ID"/>
+        <input type="text" asp-for="Product.ProductName"  />
+
+    </div>
+    <div>
+        <input type="text" asp-for="Product.UnitsInStock" />
+    </div>
+
+    <div>
+        <select asp-for="Product.CategoryID" asp-items='new SelectList(Model.Categories,"ID","CategoryName")'>
+            <option>
+                Lutfen Seciniz
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <button>
+            Güncelle
+        </button>
+    </div>
+</form>
+
+

@@ -1,0 +1,31 @@
+﻿@model ProductVM
+@{
+    ViewData["Title"] = "AddProduct";
+}
+
+<h1>AddProduct</h1>
+
+<form asp-action="AddProduct" asp-controller="Product" method="post">
+    <div>
+        <input type="text" asp-for="Product.ProductName" placeholder="Lutfen isim giriniz" />
+
+    </div>
+    <div>
+        <input type="text" asp-for="Product.UnitsInStock" placeholder="Stok Sayısı Giriniz" />
+    </div>
+
+    <div>
+        <select asp-for="Product.CategoryID" asp-items='new SelectList(Model.Categories,"ID","CategoryName")'>
+            <option>
+                Lutfen Seciniz
+            </option>
+        </select>
+    </div>
+
+    <div>
+        <button>
+            Ekle
+        </button>
+    </div>
+</form>
+

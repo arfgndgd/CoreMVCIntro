@@ -1,0 +1,1 @@
+﻿1=>Category'de Update ve Delete kısmını yazın
