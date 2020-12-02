@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CoreMVCIntro.Models.Context;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,12 +26,24 @@ namespace CoreMVCIntro
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Hangi servisin kullanılacagı (Ancak dikkat edin henüz kullanmadınız)...Servisleri ekliyorsunuz sadece
+            //Hangi servisler kullanılacak bunları ekliyoruz. Başlangıçta "services.AddControllersWithViews();" olarak gelir henüz kullanmadık. dikkat!!
 
-            //Burada standart bir Sql baglantısı belirlemek istiyorsanız (sınıf icerisinde optionBuilder'dan belirlemektense bu tercih edilir) burada belirlemelisiniz...
+            //Standart bir  Sql bağlantısı için (MyContextte optionbuilder içerisinde belirtmektense) burayı kullanırız. Diğeri esnek değil.
 
-            //Pool kullanmak bir singletonPattern görevi görür...
-            services.AddDbContextPool<MyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MyConnection"))); //böylece baglantı ayarımızı burada belirlemiş olduk
+            //Core içerisinde SingletonPattern gömülüdür. Pool kullanmak bu görevi görür.
+            //Bağlantı ayarı bu şekilde yapılır
+            services.AddDbContextPool<MyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MyConnection"))); 
+
+
+
+            //***Önemli: Authentication işlemini yapabilmek için servisi burada yaratmak gerekir.
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+
+                options.LoginPath = "/Home/Login";
+
+            });
+
 
 
 
@@ -55,7 +68,11 @@ namespace CoreMVCIntro
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //Authenticationı Authorizationdan önce vermek önemli
+
+            app.UseAuthorization();//Kullanıcı kim bunu algıla demektir.
+
+            app.UseAuthorization(); //sizin yetkiniz var mı yok mu gibi durumlarda(Authorization durumlarında ) calısacak bir metottur...
 
             app.UseEndpoints(endpoints =>
             {

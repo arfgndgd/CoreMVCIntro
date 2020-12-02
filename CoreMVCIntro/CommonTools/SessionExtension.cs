@@ -10,6 +10,9 @@ namespace CoreMVCIntro.CommonTools
     //Session'i Extension haline getirmemizin nedeni kompleks tiplerimizi alması gerektigindendir...Extension metotlar sadece generic olmayan static class'larda tanımlanabilir...
     public static  class SessionExtension
     {
+        //Core MVC'de Session, MVCdekinden farklı yazılır bunun için bu adımları takip etmemiz lazım. (Sessionı videolardan izle)
+
+
         //Session'imizi belirleyecek metodu yaratıyoruz
 
         public static void SetObject(this ISession session,string key,object value)
