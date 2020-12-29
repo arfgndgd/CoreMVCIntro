@@ -16,8 +16,6 @@ namespace CoreMVCIntro.Controllers
 {
     //Code First icin Entity Framework Core kütüphanesini manage nuget'tan indirmeyi unutmayın..Migrations'i yapabilmek icin de özellikle EntityFramework Core tools gerekir
 
-
-
     public class HomeController : Controller
     {
         MyContext _db;
@@ -56,9 +54,7 @@ namespace CoreMVCIntro.Controllers
                 await HttpContext.SignInAsync(principal);
 
                 return RedirectToAction("Index", "Product");
-
             }
-
 
             return View(new EmployeeVM { Employee = employee });
         }
